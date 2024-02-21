@@ -27,6 +27,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const jsonMessage = JSON.stringify(message);
+    console.log(jsonMessage);
   };
 
   return <>
