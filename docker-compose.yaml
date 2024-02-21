@@ -1,0 +1,78 @@
+version: '3.8'
+
+networks:
+  gpkg-pipeline:
+    driver: bridge
+
+services:
+  check-status-service:
+    image: ghcr.io/${REPO}/checkstatusservice:latest
+    container_name: CheckStatusService
+    env_file:
+      - ${ENV_CHECK_STATUS}
+    volumes:
+      - ./CheckStatusService:/CheckStatusService
+      - dash:/app/dash
+    restart: on-failure
+    networks:
+      - gpkg-pipeline
+    stdin_open: true
+
+  final-vrt-service:
+    image: ghcr.io/${REPO}/finalvrtservice:latest
+    container_name: FinalVRTService
+    env_file:
+      - ${ENV_FINAL_VRT}
+    volumes:
+      - ./FinalVRTService:/FinalVRTService
+      - dash:/app/dash
+    restart: on-failure
+    networks:
+      - gpkg-pipeline
+    stdin_open: true
+
+  tiffs-to-vrt-service:
+    image: ghcr.io/${REPO}/tiffstovrtservice:latest
+    container_name: TiffsToVrtService
+    env_file:
+      - ${ENV_TIFFS_TO_VRT}
+    volumes:
+      - ./TiffsToVrtService:/TiffsToVrtService
+      -  dash:/app/dash
+    restart: on-failure
+    networks:
+      - gpkg-pipeline
+    stdin_open: true
+
+  divide-service:
+    image: ghcr.io/${REPO}/divideservice:latest
+    container_name: DivideService
+    env_file:
+      - ${ENV_DIVIDE}
+    volumes:
+      - ./DivideService:/DivideService
+      -  dash:/app/dash
+    restart: on-failure
+    networks:
+      - gpkg-pipeline 
+    stdin_open: true
+    
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+     - "15672:15672"
+     - "5672:5672"
+
+  redis:
+    image: redis/redis-stack  
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+
+volumes:
+  dash:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${DEVICE}
+      o: bind

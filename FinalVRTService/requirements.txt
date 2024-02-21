@@ -1,0 +1,5 @@
+pytest
+pika
+redis
+python-dotenv
+ruff
