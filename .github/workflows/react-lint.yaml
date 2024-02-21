@@ -24,4 +24,4 @@ jobs:
           npm install eslint --save-dev
           npm install eslint-plugin-react@latest --save-dev
       - name: 💄Run ESLint
-        run: npx eslint --ext .jsx .
+        run: npx eslint --ext .js .
