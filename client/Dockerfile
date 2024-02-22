@@ -7,4 +7,4 @@ WORKDIR /app
 COPY . /app/
 # RUN npm start
 RUN npm install
-RUN npm start
+CMD [ "npm","start" ]
