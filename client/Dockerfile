@@ -3,7 +3,7 @@ COPY package.json ./
 RUN npm install
 COPY / .
 RUN npm run build
-# WORKDIR /app
+WORKDIR /client
 # COPY . /app/
 # RUN npm install
 # EXPOSE 3000
