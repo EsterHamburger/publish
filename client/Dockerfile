@@ -6,4 +6,5 @@ FROM node:20.10
 WORKDIR /app
 COPY . /app/
 # RUN npm start
-CMD ["npm","start"]
+RUN npm install
+RUN npm start
