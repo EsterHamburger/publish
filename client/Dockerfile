@@ -1,7 +1,7 @@
 FROM node:20.10
-COPY client/package.json ./
+COPY package.json ./
 RUN npm install
-COPY client .
+COPY / .
 RUN npm run build
 RUN npm run build
 WORKDIR /app
