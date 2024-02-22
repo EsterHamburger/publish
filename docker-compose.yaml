@@ -62,8 +62,8 @@ services:
     container_name: client
     # env_file:
     #   - ${ENV_CLIENT}
-    volumes:
-      - ./client:/client
+    # volumes:
+    #   - ./client:/client
     ports:
       - 3000:3000
     restart: on-failure
