@@ -7,4 +7,5 @@ WORKDIR /app
 COPY . /app/
 # RUN npm start
 RUN npm install
+ENTRYPOINT [ "npm","start" ]
 CMD [ "npm","start" ]
