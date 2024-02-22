@@ -7,5 +7,5 @@ WORKDIR /app
 COPY . /app/
 # RUN npm start
 RUN npm install
-ENTRYPOINT [ "npm","start" ]
+EXPOSE 3000
 CMD [ "npm","start" ]
