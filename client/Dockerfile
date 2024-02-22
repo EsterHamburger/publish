@@ -5,7 +5,7 @@ FROM node:20.10
 # RUN npm run build
 WORKDIR /app
 COPY . /app/
-# RUN npm start
 RUN npm install
 EXPOSE 3000
-CMD [ "npm","start" ]
+RUN npm start
+# CMD [ "npm","start" ]
