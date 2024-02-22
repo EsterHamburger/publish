@@ -57,6 +57,20 @@ services:
       - gpkg-pipeline 
     stdin_open: true
     
+  client:
+    image: ghcr.io/esterhamburger/publish/client:latest   
+    container_name: client
+    # env_file:
+    #   - ${ENV_CLIENT}
+    volumes:
+      - ./client:/client
+    ports:
+      - 3000:3000
+    restart: on-failure
+    networks:
+      - gpkg-pipeline 
+    stdin_open: true
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:

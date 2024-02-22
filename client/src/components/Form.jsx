@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import BasicInput from './BasicInput';
 import messageDetails from '../messageDetails.json';
+import {addMessageToQueue} from '../modules/queueManagement'
 
 const useStyles = createUseStyles({
   message: {
@@ -27,6 +28,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const jsonMessage = JSON.stringify(message);
+    addMessageToQueue(jsonMessage)
   };
 
   return <>
