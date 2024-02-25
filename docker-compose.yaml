@@ -58,14 +58,12 @@ services:
     stdin_open: true
     
   client:
-    image: ghcr.io/esterhamburger/publish/client:latest   
+    image: ghcr.io/${REPO}/client:latest   
     container_name: client
-    # env_file:
-    #   - ${ENV_CLIENT}
-    # volumes:
-    #   - ./client:/client
+    volumes:
+      - ./client:/client
     ports:
-      - 3000:3000
+      - "3000:3000"
     restart: on-failure
     networks:
       - gpkg-pipeline 
