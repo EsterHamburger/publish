@@ -38,7 +38,7 @@ services:
       - ${ENV_TIFFS_TO_VRT}
     volumes:
       - ./TiffsToVrtService:/TiffsToVrtService
-      -  dash:/app/dash
+      - dash:/app/dash
     restart: on-failure
     networks:
       - gpkg-pipeline
@@ -51,32 +51,32 @@ services:
       - ${ENV_DIVIDE}
     volumes:
       - ./DivideService:/DivideService
-      -  dash:/app/dash
+      - dash:/app/dash
     restart: on-failure
     networks:
-      - gpkg-pipeline 
+      - gpkg-pipeline
     stdin_open: true
-    
-  client:
-    image: ghcr.io/${REPO}/client:latest   
-    container_name: client
+
+  ui:
+    image: ghcr.io/${REPO}/ui:latest
+    container_name: ui
     volumes:
-      - ./client:/client
+      - ./ui:/ui
     ports:
-      - "3000:3000"
+      - "8080:8080"
     restart: on-failure
     networks:
-      - gpkg-pipeline 
+      - gpkg-pipeline
     stdin_open: true
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
-     - "15672:15672"
-     - "5672:5672"
+      - "15672:15672"
+      - "5672:5672"
 
   redis:
-    image: redis/redis-stack  
+    image: redis/redis-stack
     ports:
       - "6379:6379"
       - "8001:8001"

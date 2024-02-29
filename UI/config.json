@@ -1,0 +1,30 @@
+{
+    "listeners": {
+      "*:8080": {
+        "pass": "routes"
+      }
+    },
+  
+    "routes": [
+      {
+        "match": {
+          "uri": "/*"
+        },
+        "action": {
+          "share": "/static$uri",
+          "fallback": {
+            "pass": "applications/app"
+          }
+        }
+      }
+    ],
+  
+    "applications": {
+      "app": {
+        "type": "python",
+        "path": "/app",
+        "module": "main",
+        "callable": "app"
+      }
+    }
+  }

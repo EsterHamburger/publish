@@ -14,11 +14,10 @@
     "plugins": [
         "react"
     ],
-    
     "rules": {
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
-        "linebreak-style":"off",
+        "linebreak-style": "off",
         "indent": [
             "error",
             2
@@ -31,5 +30,13 @@
             "error",
             "always"
         ]
-    }
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        "**/node_modules/",
+        " /**/node_modules/*",
+        "out/",
+        "dist/",
+        "build/"
+    ]
 }
